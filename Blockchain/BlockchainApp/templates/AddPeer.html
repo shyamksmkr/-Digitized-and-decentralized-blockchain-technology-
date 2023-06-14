@@ -1,0 +1,76 @@
+{% load static %}
+<html">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Digitised and Decentralized Blockchain Technology</title>
+<meta name="keywords" content="" />
+<meta name="Premium Series" content="" />
+<link href="{% static 'default.css' %}" rel="stylesheet" type="text/css" media="screen" />
+<script language="javascript">
+	function checkEmail(t3) {
+		if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(t3)){
+			return (true)
+	}
+		alert("Invalid E-mail Address! Please re-enter.")
+		return (false);
+	}
+
+	function validate(formObj){
+		if(formObj.t1.value.length==0){
+			alert("Please enter peer name");
+			formObj.t1.focus();
+			return false;
+		}
+		if(!checkEmail(formObj.t1.value)){
+			formObj.t1.focus();
+			return false;
+		}
+		return true;
+	}
+	</script>
+</head>
+<body>
+<!-- start header -->
+<div id="header">
+	<div id="logo">
+		<h1><span><center>Digitised and Decentralized Blockchain Technology 
+
+</center></span></h1>
+		
+	</div>
+	<div id="menu">
+		<ul id="main">
+			<li class="current_page_item"><a href="{% url 'index' %}">Home</a></li><td></td>
+			<li><a href="{% url 'AddPeer' %}">Add Peers</a></li><td></td>
+			<li><a href="{% url 'AddToBlock' %}">Add Peers to Blocks</a></li><td></td>
+			<li><a href="{% url 'Transactions' %}">Transactions</a></li><td></td>
+			<li><a href="{% url 'ViewChain' %}">View Chain</a></li><td></td>
+			<td></td>
+			
+     
+		</ul>
+		
+	</div>
+	
+</div>
+
+<div id="wrapper">
+	<!-- start page -->
+	<div id="page">
+		 <form name ="frm" method="post" action="AddPeerAction" onsubmit="return validate(this);">
+		<center><h1>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			Add Peer Screen<h1>
+			<br/>
+			{% csrf_token %}<br/>
+	
+<table align="center">
+<tr><td><font size="3" color="black">Peer Name</td><td><input type="text" name="t1" size="20"/></td></tr>
+<tr><td></td><td><input type="submit" value="Add Peer"></td>
+</td></tr></table>
+</form>
+
+			<br/>
+			
+		
+			{{ data|safe }}
